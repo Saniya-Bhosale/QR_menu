@@ -4,6 +4,16 @@
   min-height: 100svh;
 }
 
+.sidebar,
+.content,
+.panel,
+.menu-card,
+.order-card,
+.cart-row,
+.bill-row {
+  min-width: 0;
+}
+
 .sidebar {
   padding: 32px 24px;
   background:
@@ -274,6 +284,13 @@
   gap: 12px;
 }
 
+.cart-row,
+.bill-row,
+.order-items > div,
+.menu-card-footer {
+  flex-wrap: wrap;
+}
+
 .menu-group-head h4,
 .menu-group-head span {
   margin: 0;
@@ -473,8 +490,61 @@
 }
 
 @media (max-width: 900px) {
+  .app-shell {
+    display: flex;
+    flex-direction: column;
+  }
+
   .content {
-    padding: 20px;
+    order: 1;
+    padding: 18px;
+    padding-bottom: 90px;
+  }
+
+  .sidebar {
+    order: 2;
+    padding: 10px 14px;
+    gap: 12px;
+    border-bottom: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .sidebar > :first-child,
+  .sidebar .table-card,
+  .sidebar .stats-grid {
+    display: none;
+  }
+
+  .view-switcher {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    margin: 0;
+    border-radius: 0;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding: 8px;
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(7, 13, 24, 0.98);
+    backdrop-filter: blur(14px);
+  }
+
+  .view-switcher button {
+    min-height: 44px;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    line-height: 1.2;
+    padding: 8px 6px;
+  }
+
+  .pill-row {
+    display: none;
+  }
+
+  .content {
+    padding-top: 16px;
   }
 
   .page-header,
@@ -498,12 +568,13 @@
 
 @media (max-width: 640px) {
   .sidebar {
-    padding: 18px;
-    gap: 18px;
+    padding: 8px 10px;
+    gap: 10px;
   }
 
   .content {
     padding: 14px;
+    padding-bottom: 92px;
   }
 
   .panel {
@@ -531,7 +602,7 @@
   }
 
   .view-switcher {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .order-actions button {
